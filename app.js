@@ -1,17 +1,22 @@
+// include necessary modules
 const express = require("express");
 const https = require("https");
 const bodyParser = require("body-parser");
 
+//create an express app
 const app = express();
 
+//Use body-parser middleware
 app.use(bodyParser.urlencoded({extended: true}));
 
+//Serve the html file on the root path
 app.get("/", function (req, res)
 {
     res.sendFile(__dirname + "/index.html");
     
 });
 
+//handle post request for weather data
 app.post("/", function (req, res) {
     const query = req.body.cityName;
     const apiKey = "c35181b1bbf5faa104d6ba76fde637b8";
@@ -60,7 +65,7 @@ app.post("/", function (req, res) {
 
 
 
-
+// Start the server on port 3000
 app.listen(3000, function () {
     console.log("Server is running on port 3000");
 });
